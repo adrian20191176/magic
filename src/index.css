@@ -1,5 +1,103 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("/assets/fonts/EpundaSlab-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "EpundaSlab";
+  src: url("./assets/fonts/EpundaSlab-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -10,9 +108,9 @@
 /* ===== ROOT & BASE STYLES ===== */
 :root {
   font-size: 16px;
-  --color-text: #000;
-  --color-background: #fff;
-  --font-base: "Arial", sans-serif;
+  --color-text: #000000;
+  --color-background: #1ec773;
+  --font-base: "EpundaSlab", sans-serif;
 }
 
 html,
@@ -20,6 +118,14 @@ body {
   height: 100%;
   font-family: var(--font-base);
   background-color: var(--color-background);
+  background: #2a7b9b;
+  background: radial-gradient(
+    circle,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 64%,
+    rgba(160, 210, 109, 1) 100%,
+    rgba(237, 221, 83, 1) 100%
+  );
   color: var(--color-text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -57,4 +163,7 @@ a {
 
 button {
   cursor: pointer;
+}
+
+.adrian {
 }
