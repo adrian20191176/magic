@@ -46,7 +46,7 @@ function App() {
       </p>
       <img
         className="h-72 poker-card"
-        src={`cards/${cardValue}.png`}
+        src={`cards/ah.png`}
         onClick={onCardTurn}
       />
     </div>
