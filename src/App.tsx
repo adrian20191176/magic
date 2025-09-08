@@ -32,7 +32,7 @@ function App() {
       animate(".poker-card", {
         rotateY: 0,
         duration: 550,
-        delay: 100,
+        delay: 500,
         ease: "easeInOutQuad",
       });
     });
