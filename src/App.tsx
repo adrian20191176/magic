@@ -32,6 +32,7 @@ function App() {
       animate(".poker-card", {
         rotateY: 0,
         duration: 550,
+        delay: 100,
         ease: "easeInOutQuad",
       });
     });
@@ -46,7 +47,7 @@ function App() {
       </p>
       <img
         className="h-72 poker-card"
-        src={cardValue === "back" ? "cards/back.png" : `cards/ah.png`}
+        src={`cards/${cardValue}.png`}
         onClick={onCardTurn}
       />
     </div>
