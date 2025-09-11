@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { animate } from "animejs";
 import { cards } from "./utils/card_api";
+import { useNavigate, useLocation } from "react-router-dom";
 import _ from "lodash";
 
 function App() {
   const [cardValue, setCardValue] = useState<string>("back");
+  const [count, setCount] = useState<number>(0);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (window.location.pathname.split("/")[1] === "adrian") {
+      navigate("/", { state: { data: 2 } });
+    }
+  }, [navigate]);
+
+  const location = useLocation();
+  const receivedData = location.state?.data ?? 200;
   async function onCardTurn() {
     animate(".magic-text", {
       opacity: 0,
@@ -26,8 +37,13 @@ function App() {
       duration: 550,
     }).then(async () => {
       setCardValue((previousValue) =>
-        previousValue !== "back" ? "back" : _.sample(cards) ?? "ah"
+        previousValue !== "back"
+          ? "back"
+          : count === receivedData
+          ? "5c"
+          : _.sample(cards) ?? "ah"
       );
+      setCount((prev) => prev + 1);
 
       animate(".poker-card", {
         rotateY: 0,
