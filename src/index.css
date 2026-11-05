@@ -1,134 +1,110 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
+/* ===== AMBIENCE =====
+   Registered so the room re-lights with a slow cross-fade when the ambience changes. */
+@property --amb-core {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #10402f;
+}
+@property --amb-mid {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #082219;
+}
+@property --amb-deep {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #020806;
+}
+@property --amb-tint {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(70, 170, 125, 0.16);
 }
 
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-BlackItalic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
+/* ===== ROOT & TOKENS ===== */
+:root {
+  color-scheme: dark;
+  font-size: 16px;
+
+  --font-serif: "Cormorant Garamond Variable", "Cormorant Garamond", Garamond, "Times New Roman", serif;
+  --font-caps: "Cinzel Variable", Cinzel, "Times New Roman", serif;
+
+  --gold-50: #fbf3da;
+  --gold-100: #f2e2b0;
+  --gold-300: #dcbd77;
+  --gold-500: #c09a52;
+  --gold-700: #876a30;
+  --gold-foil: linear-gradient(100deg, #9b7835 0%, #e6cb86 24%, #fff3cf 42%, #d7b267 58%, #8f6c2e 78%, #d9bb74 100%);
+  --ivory: #f3ead6;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --amb-core: #10402f;
+  --amb-mid: #082219;
+  --amb-deep: #020806;
+  --amb-tint: rgba(70, 170, 125, 0.16);
+
+  transition:
+    --amb-core 1.8s var(--ease-in-out),
+    --amb-mid 1.8s var(--ease-in-out),
+    --amb-deep 1.8s var(--ease-in-out),
+    --amb-tint 1.8s var(--ease-in-out);
 }
 
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
+:root[data-ambience="sapphire"] {
+  --amb-core: #1a3366;
+  --amb-mid: #0b1736;
+  --amb-deep: #02040c;
+  --amb-tint: rgba(96, 140, 230, 0.15);
 }
 
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
+:root[data-ambience="bordeaux"] {
+  --amb-core: #561326;
+  --amb-mid: #2a0812;
+  --amb-deep: #090103;
+  --amb-tint: rgba(220, 80, 110, 0.13);
 }
 
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-ExtraBold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-ExtraBoldItalic.ttf") format("truetype");
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-MediumItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("/assets/fonts/EpundaSlab-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "EpundaSlab";
-  src: url("./assets/fonts/EpundaSlab-SemiBoldItalic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
+:root[data-ambience="onyx"] {
+  --amb-core: #2d2a26;
+  --amb-mid: #141311;
+  --amb-deep: #040404;
+  --amb-tint: rgba(230, 200, 150, 0.09);
 }
 
 /* ===== RESET ===== */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== ROOT & BASE STYLES ===== */
-:root {
-  font-size: 16px;
-  --color-text: #000000;
-  --color-background: #1ec773;
-  --font-base: "EpundaSlab", sans-serif;
-}
-
 html,
 body {
   height: 100%;
-  font-family: var(--font-base);
-  background-color: var(--color-background);
-  background: #2a7b9b;
-  background: radial-gradient(
-    circle,
-    rgba(42, 123, 155, 1) 0%,
-    rgba(87, 199, 133, 1) 64%,
-    rgba(160, 210, 109, 1) 100%,
-    rgba(237, 221, 83, 1) 100%
-  );
-  color: var(--color-text);
+}
+
+body {
+  background: var(--amb-deep);
+  color: var(--ivory);
+  font-family: var(--font-serif);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100%;
 }
 
 /* ===== ELEMENT NORMALIZATION ===== */
@@ -146,6 +122,7 @@ button,
 textarea,
 select {
   font: inherit;
+  color: inherit;
   border: none;
   background: none;
   outline: none;
@@ -163,4 +140,21 @@ a {
 
 button {
   cursor: pointer;
+}
+
+::selection {
+  background: rgba(220, 189, 119, 0.35);
+  color: #fff;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
